@@ -30,11 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
   String imgUrl = "";
   void getfromApiQoute() async {
     Qoute qoute = Qoute();
-    // qouteimage qouteImg = qouteimage();
-    // qouteImg.getRandomQoute();
+    qouteimage qouteImg = qouteimage();
+    qouteImg.getRandomQoute();
 
     // qouteImg.getRandomBackgroundImag();
-    // print(qouteImg.img);
+    print(qouteImg.img);
     // qouteImg.getRandomBackgroundImag();
     // qouteImg.getRandomQoute();
     // Navigator.push(context, MaterialPageRoute(builder: (context) {
