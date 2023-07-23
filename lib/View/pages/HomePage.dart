@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                           RandomImage(imgDesc: widget.qoute.desc)
                               .getRandomImag()
                               .then((value) {
-                            Navigator.push(context,
+                            Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
                               return HomePage(qoute: widget.qoute, img: value);
                             }));
@@ -87,12 +87,12 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 300.0),
+                          padding: const EdgeInsets.only(left: 300.0, top: 20),
                           child: Image(
                             image: AssetImage('assets/images/right-quotes.png'),
                             height: 24,
                             width: 24,
-                            color: Colors.black26,
+                            color: Colors.black,
                           ),
                         ),
                         SizedBox(
@@ -108,7 +108,11 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             textAlign: TextAlign.center,
                             widget.qoute.content,
-                            style: TextStyle(fontSize: 30.0, letterSpacing: 2),
+                            style: TextStyle(
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 2,
+                                fontFamily: 'EduSABeginner'),
                           ),
                         ),
                         SizedBox(
@@ -123,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                                   AssetImage('assets/images/right-quotes.png'),
                               height: 24,
                               width: 24,
-                              color: Colors.black26,
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -139,7 +143,10 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             textAlign: TextAlign.center,
                             widget.qoute.author,
-                            style: TextStyle(fontSize: 15.0, letterSpacing: 2),
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              letterSpacing: 2,
+                            ),
                           ),
                         ),
                       ],
