@@ -5,13 +5,13 @@ import 'package:qoute_app/Model/qoute.dart';
 import 'package:qoute_app/View/pages/splash.dart';
 
 import '../../Model/ImageModel.dart';
-import '../../qoute&image.dart';
+import '../../qoute_image.dart';
 
 class HomePage extends StatefulWidget {
-  Qoute qoute;
-  String img;
-
-  HomePage({super.key, required this.qoute, required this.img});
+  // Qoute qoute;
+  // String img;
+  QouteImage qoute_img;
+  HomePage({super.key, required this.qoute_img});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,14 +23,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  void getDataFromit() {
-    setState(() {
-      // qouteimage qouteImg = qouteimage();
-      // qouteImg.getRandomBackgroundImag();
-      // qouteImg.getRandomQoute();
-      // widget.img = qouteimage().img;
-      // widget.qoute = qouteimage().qoute;
-    });
+  void getDataFromit() async {
+    await widget.qoute_img.getRandomQouteAndImg();
   }
 
   @override
@@ -42,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           decoration: BoxDecoration(
             image: DecorationImage(
               // opacity: AlwaysStoppedAnimation(0.5),
-              image: NetworkImage(widget.img),
+              image: NetworkImage(widget.qoute_img.img),
               fit: BoxFit.cover,
             ),
           ),
@@ -70,16 +64,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         onPressed: () {
-                          widget.qoute.getRandomQoute().whenComplete(() {
-                            RandomImage(imgDesc: widget.qoute.desc)
-                                .getRandomImag()
-                                .then((value) {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return HomePage(
-                                    qoute: widget.qoute, img: value);
-                              }));
-                            });
+                          setState(() {
+                            getDataFromit();
                           });
 
                           // getDataFromit();
@@ -109,18 +95,6 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.only(top: 70.0),
                           child: Stack(
                             children: [
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.end,
-                              //   children: [
-                              //     Image(
-                              //       image: AssetImage(
-                              //           'assets/images/right-quotes.png'),
-                              //       height: 50,
-                              //       width: 50,
-                              //       color: Colors.black,
-                              //     ),
-                              //   ],
-                              // ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -139,14 +113,13 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Container(
                                 padding: EdgeInsets.all(45),
-                                // color: Colors.white10,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white30,
+                                  color: Colors.white38,
                                 ),
                                 child: Text(
                                   textAlign: TextAlign.center,
-                                  widget.qoute.content,
+                                  widget.qoute_img.qoute.content,
                                   style: TextStyle(
                                       fontSize: 30.0,
                                       fontWeight: FontWeight.bold,
@@ -168,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: Text(
                             textAlign: TextAlign.center,
-                            widget.qoute.author,
+                            widget.qoute_img.qoute.author,
                             style: TextStyle(
                               fontSize: 15.0,
                               letterSpacing: 2,
