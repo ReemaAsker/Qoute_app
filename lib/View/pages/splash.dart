@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:qoute_app/Model/qoute.dart';
 import 'package:qoute_app/View/pages/HomePage.dart';
-import 'package:qoute_app/qoute_image.dart';
+import 'package:qoute_app/linked/qoute_image.dart';
 
 import '../../Model/ImageModel.dart';
 
@@ -29,24 +29,27 @@ class _SplashScreenState extends State<SplashScreen> {
   */
   String imgUrl = "";
   void getfromApiQoute() async {
+    
     QouteImage qouteImg = QouteImage();
     await qouteImg.getRandomQouteAndImg().whenComplete(() {
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return HomePage(
           qoute_img: qouteImg,
-        ); //qoute: qouteImg.qoute, img: qouteImg.img
+        );
       }));
     });
   }
 
   @override
   void initState() {
+    
     getfromApiQoute();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
       child: Scaffold(
         body: Center(child: CircularProgressIndicator()),

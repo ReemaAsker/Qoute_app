@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qoute_app/services/Networking.dart';
 
-import 'Model/ImageModel.dart';
-import 'Model/qoute.dart';
+import '../Model/ImageModel.dart';
+import '../Model/qoute.dart';
 
 class QouteImage {
   late Qoute qoute;
